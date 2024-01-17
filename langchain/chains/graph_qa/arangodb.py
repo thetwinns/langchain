@@ -209,6 +209,12 @@ class ArangoGraphQAChain(Chain):
                 Unable to execute the AQL Query due to the following error:
                 {aql_error}
             """
+            aql_error_message = f"""
+UNABLE TO EXECUTE THE AQL QUERY DUE TO THE FOLLOWING ERROR:
+{aql_error}
+POSSIBLE INVALID QUESTION
+            """
+            raise Exception(aql_error_message)
             raise ValueError(m)
 
         _run_manager.on_text("AQL Result:", end="\n", verbose=self.verbose)
